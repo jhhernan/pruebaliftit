@@ -13,6 +13,12 @@ interface IPoints {
     lat: number,
   } 
 
+const testPath = [{ lng:-74.06725643633541, lat:4.8293179395713},
+    {lng:-74.05756710463811, lat:4.82986054103117}, 
+    {lng:-74.03924781023824, lat:4.82714752833579},
+    {lng:-74.01069658088244, lat:4.81536530246677},
+    {lng:-74.01718197256992, lat:4.79115489288404}];
+
 class MapBox extends React.Component<any, any>{
     showMarkers = (points:IPoints[]) => {
         return points.map((point, index) => {
@@ -43,6 +49,13 @@ class MapBox extends React.Component<any, any>{
               }
             >
                 {this.showMarkers(this.props.points)}
+
+                <Polyline
+                  path={testPath}
+                  strokeColor="#0000FF"
+                  strokeOpacity={0.5}
+                  strokeWeight={2}
+                />
             </Map>
   
           </header>
