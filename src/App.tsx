@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker, Polyline } from 'google-maps-react';
 import './App.css';
 
 
@@ -7,6 +7,9 @@ const mapStyles = {
   width: '60%',
   height: '60%',
 };
+
+const testPath=[{ lng: -74.06725643633541, lat: 4.8293179395713 },
+  { lng: -74.05756710463811, lat: 4.82986054103117}];
 
 class App extends React.Component<any>{
   render() {
@@ -24,10 +27,24 @@ class App extends React.Component<any>{
             <Marker  
               position={{ lng: -74.06725643633541, lat: 4.8293179395713 }}
               label={{
-                text: "Punto 1",
+                text: "1",
                 fontFamily: "Arial",
                 fontSize: "14px",
               }}/>
+            <Marker  
+              position={{ lng: -74.05756710463811, lat: 4.82986054103117 }}
+              label={{
+                text: "2",
+                fontFamily: "Arial",
+                fontSize: "14px",
+              }}/>
+
+            <Polyline
+              path={testPath}
+              strokeColor="#0000FF"
+              strokeOpacity={0.8}
+              strokeWeight={2}
+            />
           </Map>
 
         </header>
