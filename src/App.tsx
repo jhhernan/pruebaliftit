@@ -1,24 +1,26 @@
 import React from 'react';
-import { Map, GoogleApiWrapper, Marker, Polyline } from 'google-maps-react';
+import MapBox from './components/MapBox';
 import './App.css';
 
-
-const mapStyles = {
-  width: '60%',
-  height: '60%',
-};
-
-const testPath=[{ lng: -74.06725643633541, lat: 4.8293179395713 },
-  { lng: -74.05756710463811, lat: 4.82986054103117}];
-
-class App extends React.Component<any>{
+class App extends React.Component<any, any>{
+  constructor(props:any){
+    super(props);
+    this.state={
+      points:[{label:"1", lng:-74.06725643633541, lat:4.8293179395713},
+            {label:"2", lng:-74.05756710463811, lat:4.82986054103117},
+            {label:"3", lng:-74.03924781023824, lat:4.82714752833579},
+            {label:"4", lng:-74.01069658088244, lat:4.81536530246677},
+            {label:"5", lng:-74.01718197256992, lat:4.79115489288404}]
+    }
+  }
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <Map  
+            <MapBox points={this.state.points}/>
+          {/* <Map  
             google={this.props.google}     
-            zoom={12}
+            zoom={14}
             style={mapStyles}
             initialCenter={
               { lng: -74.06725643633541, lat: 4.8293179395713 }
@@ -45,7 +47,7 @@ class App extends React.Component<any>{
               strokeOpacity={0.8}
               strokeWeight={2}
             />
-          </Map>
+          </Map> */}
 
         </header>
       </div>
@@ -53,7 +55,4 @@ class App extends React.Component<any>{
   }
 }
 
-//export default App;
-export default GoogleApiWrapper({
-  apiKey: 'AIzaSyAePvgmHTkh7fyL1UdIAv-uEmS4snQ3Mz4'
-})(App);
+export default App;
