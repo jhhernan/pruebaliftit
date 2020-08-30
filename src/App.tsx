@@ -13,11 +13,34 @@ class App extends React.Component<any, any>{
             {label:"5", lng:-74.01718197256992, lat:4.79115489288404}]
     }
   }
+
+  componentDidMount(){
+    let routes = this.permutation([1,2,3]);
+    this.setState({ routes });
+  }
+
+  permutation:any = (arr:number[]) => {
+    let ret = [];
+  
+    for (let i = 0; i < arr.length; i = i + 1) {
+      let rest = this.permutation(arr.slice(0, i).concat(arr.slice(i + 1)));
+  
+      if(!rest.length) {
+         ret.push([arr[i]])
+      } else {
+        for(let j = 0; j < rest.length; j = j + 1) {
+          ret.push([arr[i]].concat(rest[j]))
+        }
+      }
+    }
+    return ret;
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-            <MapBox points={this.state.points}/>
+            <MapBox points={this.state.points} path={[1,2,3,4]}/>
         </header>
       </div>
     );

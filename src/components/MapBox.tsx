@@ -34,6 +34,15 @@ class MapBox extends React.Component<any, any>{
           />
         })
       }
+
+    genPath = (path:any) => {
+        const { points } = this.props;
+        let route = [];
+        for (let i=0; i<path.length; i++){
+            route.push({lat:points[path[i]].lat, lng:points[path[i]].lng});
+        }
+        return route;
+    }
     
 
     render() {
@@ -51,7 +60,7 @@ class MapBox extends React.Component<any, any>{
                 {this.showMarkers(this.props.points)}
 
                 <Polyline
-                  path={testPath}
+                  path={this.genPath([0,1,2,3,4])}
                   strokeColor="#0000FF"
                   strokeOpacity={0.5}
                   strokeWeight={2}
