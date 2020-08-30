@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import './App.css';
 
 
@@ -21,6 +21,13 @@ class App extends React.Component<any>{
               { lng: -74.06725643633541, lat: 4.8293179395713 }
             }
           >
+            <Marker  
+              position={{ lng: -74.06725643633541, lat: 4.8293179395713 }}
+              label={{
+                text: "Punto 1",
+                fontFamily: "Arial",
+                fontSize: "14px",
+              }}/>
           </Map>
 
         </header>
