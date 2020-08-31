@@ -15,7 +15,7 @@ class App extends React.Component<any, any>{
   }
 
   componentDidMount(){
-    let routes = this.permutation([1,2,3]);
+    let routes = this.permutation([1,2,3,4]);
     this.setState({ routes });
   }
 
@@ -25,7 +25,7 @@ class App extends React.Component<any, any>{
     for (let i = 0; i < arr.length; i = i + 1) {
       let rest = this.permutation(arr.slice(0, i).concat(arr.slice(i + 1)));
   
-      if(!rest.length) {
+      if(!rest.length) { 
          ret.push([arr[i]])
       } else {
         for(let j = 0; j < rest.length; j = j + 1) {
@@ -37,12 +37,15 @@ class App extends React.Component<any, any>{
   }
 
   render() {
+    const { routes, points } = this.state;
     return (
-      <div className="App">
-        <header className="App-header">
-            <MapBox points={this.state.points} path={[1,2,3,4]}/>
-        </header>
-      </div>
+      <div className="container">
+        {routes && routes.length > 0 && routes.map((route:number[],idx:number) => { 
+          return <div className="box"> Ruta {idx}
+            <MapBox points={points} path={route}/>
+          </div>
+        })}
+        </div>
     );
   }
 }
