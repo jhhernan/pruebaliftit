@@ -1,5 +1,6 @@
 import React from 'react';
 import MapBox from './components/MapBox';
+import MapBoxStatic from './components/MapBoxStatic';
 import './App.css';
 
 class App extends React.Component<any, any>{
@@ -39,13 +40,20 @@ class App extends React.Component<any, any>{
   render() {
     const { routes, points } = this.state;
     return (
+      <div>
+      <div className="header">
+        <h1>Posibles Rutas</h1>
+      </div>
       <div className="container">
         {routes && routes.length > 0 && routes.map((route:number[],idx:number) => { 
-          return <div className="box"> Ruta {idx}
-            <MapBox points={points} path={route}/>
+          return <div className="box" key={idx}> 
+            <MapBoxStatic points={points} path={route} index={idx}/>
+            {/* <img src="https://maps.googleapis.com/maps/api/staticmap?size=400x300&scale=1&format=png&maptype=roadmap&markers=size:normal%7Ccolor:blue%7Clabel:P%7C6.4488387,3.5496361&key=AIzaSyAePvgmHTkh7fyL1UdIAv-uEmS4snQ3Mz4" alt="nada"/> */}
+
           </div>
         })}
-        </div>
+      </div>
+      </div>
     );
   }
 }
